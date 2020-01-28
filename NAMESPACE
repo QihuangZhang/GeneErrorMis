@@ -1,0 +1,27 @@
+useDynLib(GeneErrorMis)
+
+export(GEEknown,GEEint)
+importFrom(nleqslv,nleqslv)
+importFrom("stats", "binomial", "glm", "lm", "sigma")
+
+
+export(logLikelihood_indep_c,logLikelihood_indep_nullmeas_c, logLikelihood_indep_nullmeas_cPar)
+export(logLik_GQapprox_nullmeas_ci,IL_score_nullmeas_ci,IL_infomat_nullmeas_ci)
+export(logLik_GQapprox_nullmeas_ci_nlam,IL_score_nullmeas_ci_nlam,IL_infomat_nullmeas_ci_nlam)
+export(logLik_GQapprox_nullmeas_ci_ulam,IL_score_nullmeas_ci_ulam,IL_infomat_nullmeas_ci_ulam)
+export(EMGQ_nullmeas_ci,EMGQ_nullmeas_ci_nlam)
+export(logLik_GQapprox_measonly,IL_score_measonly,IL_infomat_measonly,EMGQ_measonly)
+export(logLik_GQapprox_misconly,IL_score_misconly,IL_infomat_misconly,EMGQ_misconly)
+export(logLik_GQapprox_noerror,IL_score_noerror,IL_infomat_noerror)
+
+export(GEE_UfuncIns,GEE_SIGMAIns,GEE_GAMMAIns)
+export(GEE_UfuncInsIV,GEE_UfuncInsIVWeight,GEE_SIGMAInsIVI,GEE_SIGMAInsIV0,GEE_GAMMAInsIVI,GEE_GAMMAInsIV0)
+export(GEE_SIGMAInsEVI,GEE_SIGMAInsEV0,GEE_GAMMAInsEVI,GEE_GAMMAInsEV0)
+
+export(ZI_GenerateV,ZI_GeneratePoiPar_Binary,ZI_GenerateJoint,ZI_GenerateU1,ZI_GenerateU2,ZI_GenerateBetaMetro,ZI_GenerateBigJoint,ZI_GenerateAlphaMNMetro)
+
+export(logLik_twin_nlam,IL_score_twin,IL_infomat_twin,EMGQ_twin_nlam)
+export(logLik_twin_misconly,IL_score_twin_misconly,IL_infomat_twin_misconly)
+export(logLik_twin_measonly,IL_score_twin_measonly,IL_infomat_twin_measonly)
+
+importFrom(Rcpp, evalCpp)
