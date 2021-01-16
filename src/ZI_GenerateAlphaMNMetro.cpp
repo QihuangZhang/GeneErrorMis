@@ -39,7 +39,7 @@ NumericVector ZI_GenerateAlphaMNMetro(NumericVector Par, NumericVector Y, Numeri
     logratioposterior = (Pargen[i]-priormu[i])*(Pargen[i]-priormu[i])/(2*priorSigmas[i]*priorSigmas[i])
       -(parastar-priormu[i])*(parastar-priormu[i])/(2*priorSigmas[i]*priorSigmas[i]);
     
-    // std::cout << 'P' << logratioposterior  << ' ';  
+    // std::cout << 'P' << 'r' << logratioposterior  << ' ';  
       
     for (j = 0; j < nsam; ++j){
       muprop[j] = mu[j] + Covar(j,i) * (parastar - Pargen[i]);
@@ -102,7 +102,10 @@ NumericVector ZI_GenerateAlphaMNMetro(NumericVector Par, NumericVector Y, Numeri
 #
 # # hist(record1)
 # hist(record2[1000:50000])
-#   
-# alphaminus <-  ZI_GenerateAlphaMNMetro(alphaminus0, Y, Zminus, as.matrix(Covarminus),  0.05, 
-#                                                                                 priormu,  priorSigmas=priorSigma)
+
+# alphaminus <- c(0,0)
+# Y <- 
+# 
+# 
+# alphaminus <- ZI_GenerateAlphaMNMetro(alphaminus, Y, Zminus, as.matrix(Covarminus),  propsigma= propsigmai[7:8],  priormu,  priorSigmas=priorSigma)
 */

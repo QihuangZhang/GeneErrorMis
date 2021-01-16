@@ -17,8 +17,10 @@ export(logLik_GQapprox_noerror,IL_score_noerror,IL_infomat_noerror)
 export(GEE_UfuncIns,GEE_SIGMAIns,GEE_GAMMAIns)
 export(GEE_UfuncInsIV,GEE_UfuncInsIVWeight,GEE_SIGMAInsIVI,GEE_SIGMAInsIV0,GEE_GAMMAInsIVI,GEE_GAMMAInsIV0)
 export(GEE_SIGMAInsEVI,GEE_SIGMAInsEV0,GEE_GAMMAInsEVI,GEE_GAMMAInsEV0)
+export(GEE_UfuncIns_fun, GEE_SIGMAIns_fun)
 
 export(ZI_GenerateV,ZI_GeneratePoiPar_Binary,ZI_GenerateJoint,ZI_GenerateU1,ZI_GenerateU2,ZI_GenerateBetaMetro,ZI_GenerateBigJoint,ZI_GenerateAlphaMNMetro)
+export(ZI_GenerateZpZmJoint)
 
 export(logLik_twin_nlam,IL_score_twin,IL_infomat_twin,EMGQ_twin_nlam)
 export(logLik_twin_misconly,IL_score_twin_misconly,IL_infomat_twin_misconly)

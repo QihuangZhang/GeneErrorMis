@@ -41,6 +41,10 @@ GEE_GAMMAInsIVI <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis
     .Call('_GeneErrorMis_GEE_GAMMAInsIVI', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e, fixgamma1, fixgamma, fixsigma_e, fixalpha1, fixalpha0)
 }
 
+GEE_GAMMAIns_fun <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, beta1, beta2, xi, sigma) {
+    .Call('_GeneErrorMis_GEE_GAMMAIns_fun', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, beta1, beta2, xi, sigma)
+}
+
 GEE_SIGMAIns <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e) {
     .Call('_GeneErrorMis_GEE_SIGMAIns', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e)
 }
@@ -61,6 +65,10 @@ GEE_SIGMAInsIVI <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis
     .Call('_GeneErrorMis_GEE_SIGMAInsIVI', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e, fixgamma1, fixgamma, fixsigma_e, fixalpha1, fixalpha0)
 }
 
+GEE_SIGMAIns_fun <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma, alpha1, alpha0, sigma_e) {
+    .Call('_GeneErrorMis_GEE_SIGMAIns_fun', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma, alpha1, alpha0, sigma_e)
+}
+
 GEE_UfuncIns <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e) {
     .Call('_GeneErrorMis_GEE_UfuncIns', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e)
 }
@@ -71,6 +79,10 @@ GEE_UfuncInsIV <- function(Y1star, Y2star, Y1, Y2, DesignMatrix1, DesignMatrix2,
 
 GEE_UfuncInsIVWeight <- function(Y1star, Y2star, Y1, Y2, DesignMatrix1, DesignMatrix2, ValidationMatrix1, ValidationMatrix2, CovMis1, CovMis2, Weight, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e) {
     .Call('_GeneErrorMis_GEE_UfuncInsIVWeight', PACKAGE = 'GeneErrorMis', Y1star, Y2star, Y1, Y2, DesignMatrix1, DesignMatrix2, ValidationMatrix1, ValidationMatrix2, CovMis1, CovMis2, Weight, beta1, beta2, xi, sigma, gamma1, gamma, alpha1, alpha0, sigma_e)
+}
+
+GEE_UfuncIns_fun <- function(Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma, alpha1, alpha0, sigma_e) {
+    .Call('_GeneErrorMis_GEE_UfuncIns_fun', PACKAGE = 'GeneErrorMis', Y1star, Y2star, DesignMatrix1, DesignMatrix2, CovMis1, CovMis2, beta1, beta2, xi, sigma, gamma, alpha1, alpha0, sigma_e)
 }
 
 IL_infomat_measonly <- function(w, v, Y1star, Y2star, Covariates, isY2in, CovMis2, R, beta1, beta2, gamma, sigma, sigma_e, sigma_g) {
@@ -145,6 +157,42 @@ IL_score_twin_misconly <- function(w, v, Y1star, Y2star, Covariates, isY2in, Cov
     .Call('_GeneErrorMis_IL_score_twin_misconly', PACKAGE = 'GeneErrorMis', w, v, Y1star, Y2star, Covariates, isY2in, CovMis2, rho, beta1, beta2, alpha1, alpha0, sigma, sigma_g)
 }
 
+ZI_GenerateAlphaMNMetro <- function(Par, Y, Z, Covar, propsigma, priormu, priorSigmas) {
+    .Call('_GeneErrorMis_ZI_GenerateAlphaMNMetro', PACKAGE = 'GeneErrorMis', Par, Y, Z, Covar, propsigma, priormu, priorSigmas)
+}
+
+ZI_GenerateBetaMetro <- function(Par, U, Covar, propsigma, priorgamma) {
+    .Call('_GeneErrorMis_ZI_GenerateBetaMetro', PACKAGE = 'GeneErrorMis', Par, U, Covar, propsigma, priorgamma)
+}
+
+ZI_GenerateBigJoint <- function(Yistar, Ui1bound, Ui2bound, mu1i, mu2i, muZplusi, muZminusi) {
+    .Call('_GeneErrorMis_ZI_GenerateBigJoint', PACKAGE = 'GeneErrorMis', Yistar, Ui1bound, Ui2bound, mu1i, mu2i, muZplusi, muZminusi)
+}
+
+ZI_GenerateJoint <- function(Yistar, minusbound, phii, mu2i, muZplusi, muZminusi) {
+    .Call('_GeneErrorMis_ZI_GenerateJoint', PACKAGE = 'GeneErrorMis', Yistar, minusbound, phii, mu2i, muZplusi, muZminusi)
+}
+
+ZI_GeneratePoiPar_Binary <- function(Par, covariates, Outcome, priorgamma) {
+    .Call('_GeneErrorMis_ZI_GeneratePoiPar_Binary', PACKAGE = 'GeneErrorMis', Par, covariates, Outcome, priorgamma)
+}
+
+ZI_GenerateU1 <- function(Y, U2, mu1) {
+    .Call('_GeneErrorMis_ZI_GenerateU1', PACKAGE = 'GeneErrorMis', Y, U2, mu1)
+}
+
+ZI_GenerateU2 <- function(Y, U1, mu2) {
+    .Call('_GeneErrorMis_ZI_GenerateU2', PACKAGE = 'GeneErrorMis', Y, U1, mu2)
+}
+
+ZI_GenerateV <- function(Y, Zminus, muZminus, covminus) {
+    .Call('_GeneErrorMis_ZI_GenerateV', PACKAGE = 'GeneErrorMis', Y, Zminus, muZminus, covminus)
+}
+
+ZI_GenerateZpZmJoint <- function(Yistar, Yi, muZplusi, muZminusi) {
+    .Call('_GeneErrorMis_ZI_GenerateZpZmJoint', PACKAGE = 'GeneErrorMis', Yistar, Yi, muZplusi, muZminusi)
+}
+
 logLik_GQapprox_measonly <- function(w, v, Y1star, Y2star, Covariates, isY2in, CovMis2, R, beta1, beta2, gamma, sigma, sigma_e, sigma_g) {
     .Call('_GeneErrorMis_logLik_GQapprox_measonly', PACKAGE = 'GeneErrorMis', w, v, Y1star, Y2star, Covariates, isY2in, CovMis2, R, beta1, beta2, gamma, sigma, sigma_e, sigma_g)
 }
@@ -191,37 +239,5 @@ logLikelihood_indep_nullmeas_c <- function(u, random1, random2, Y1star, Y2star, 
 
 logLikelihood_indep_nullmeas_cPar <- function(u, random1, random2, Y1star, Y2star, Covariates, isY2in, CovMis2, beta1, beta2, lambda, gamma, alpha1, alpha0, sigma, sigma_e) {
     .Call('_GeneErrorMis_logLikelihood_indep_nullmeas_cPar', PACKAGE = 'GeneErrorMis', u, random1, random2, Y1star, Y2star, Covariates, isY2in, CovMis2, beta1, beta2, lambda, gamma, alpha1, alpha0, sigma, sigma_e)
-}
-
-ZI_GenerateAlphaMNMetro <- function(Par, Y, Z, Covar, propsigma, priormu, priorSigmas) {
-    .Call('_GeneErrorMis_ZI_GenerateAlphaMNMetro', PACKAGE = 'GeneErrorMis', Par, Y, Z, Covar, propsigma, priormu, priorSigmas)
-}
-
-ZI_GenerateBetaMetro <- function(Par, U, Covar, propsigma, priorgamma) {
-    .Call('_GeneErrorMis_ZI_GenerateBetaMetro', PACKAGE = 'GeneErrorMis', Par, U, Covar, propsigma, priorgamma)
-}
-
-ZI_GenerateBigJoint <- function(Yistar, Ui1bound, Ui2bound, mu1i, mu2i, muZplusi, muZminusi) {
-    .Call('_GeneErrorMis_ZI_GenerateBigJoint', PACKAGE = 'GeneErrorMis', Yistar, Ui1bound, Ui2bound, mu1i, mu2i, muZplusi, muZminusi)
-}
-
-ZI_GenerateJoint <- function(Yistar, minusbound, phii, mu2i, muZplusi, muZminusi) {
-    .Call('_GeneErrorMis_ZI_GenerateJoint', PACKAGE = 'GeneErrorMis', Yistar, minusbound, phii, mu2i, muZplusi, muZminusi)
-}
-
-ZI_GeneratePoiPar_Binary <- function(Par, covariates, Outcome, priorgamma) {
-    .Call('_GeneErrorMis_ZI_GeneratePoiPar_Binary', PACKAGE = 'GeneErrorMis', Par, covariates, Outcome, priorgamma)
-}
-
-ZI_GenerateU1 <- function(Y, U2, mu1) {
-    .Call('_GeneErrorMis_ZI_GenerateU1', PACKAGE = 'GeneErrorMis', Y, U2, mu1)
-}
-
-ZI_GenerateU2 <- function(Y, U1, mu2) {
-    .Call('_GeneErrorMis_ZI_GenerateU2', PACKAGE = 'GeneErrorMis', Y, U1, mu2)
-}
-
-ZI_GenerateV <- function(Y, Zminus, muZminus, covminus) {
-    .Call('_GeneErrorMis_ZI_GenerateV', PACKAGE = 'GeneErrorMis', Y, Zminus, muZminus, covminus)
 }
 

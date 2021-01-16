@@ -5,16 +5,18 @@ using namespace std;
 
 
 // [[Rcpp::export]]
-NumericVector GEE_UfuncIns(NumericVector Y1star, NumericVector Y2star, NumericMatrix DesignMatrix1, NumericMatrix DesignMatrix2, NumericMatrix CovMis1, NumericMatrix CovMis2, 
+NumericVector GEE_UfuncIns_fun(NumericVector Y1star, NumericVector Y2star, NumericMatrix DesignMatrix1, NumericMatrix DesignMatrix2, NumericVector CovMis1, NumericMatrix CovMis2, 
                                     NumericVector beta1, NumericVector beta2, double xi, 
-                                    double sigma, double gamma1, NumericVector gamma, NumericVector alpha1, NumericVector alpha0,
+                                    double sigma, NumericVector gamma, NumericVector alpha1, NumericVector alpha0,
                                     double sigma_e){
+  // This function is special build in response to the referee-2 with respect to a function measurement error model
   int i,j;
   int nsam = DesignMatrix1.nrow();
   int ncov1 = DesignMatrix1.ncol();
   int ncov2 = DesignMatrix2.ncol();
-  int ncovMea = CovMis1.ncol();
+  // int ncovMea = CovMis1.ncol();
   int ncovMis = CovMis2.ncol();
+  double gamma1;
   NumericMatrix Vii(2,2),Viinverse(2,2);
   NumericVector eta1(nsam),eta2(nsam),eta2expit(nsam);
   NumericVector mta_1(nsam),mta_20(nsam),mta_21(nsam);
@@ -68,17 +70,14 @@ NumericVector GEE_UfuncIns(NumericVector Y1star, NumericVector Y2star, NumericMa
     
     Y2starstar(i) = (Y2star(i) - pi0) / (1 - pi0 - pi1);
     
-    for (j = 0; j < ncovMea; ++j){
-      if (j == 1) {
-        mta_1(i) += gamma(j) * CovMis1(i,j) * Y2starstar(i);
-      } else {
-        mta_1(i) += gamma(j) * CovMis1(i,j);
-      }
-    }
+    mta_1(i) = gamma(0) + gamma(2) * Y2starstar(i);
+
+    gamma1 = gamma(1) + CovMis1(i) * gamma(3);
+     
     
-    Y1starstar(i) = (Y1star(i) - mta_1(i)) / gamma1;
+    Y1starstar(i) =  (Y1star(i) - mta_1(i)) / gamma1;
     
-    
+    // std::cout << ' ' << gamma1  << ' ';
     
     Delta0 = (pi0-pow(pi0,2)) / pow(1-pi0-pi1,2);
     Delta1 = (pi1-pow(pi1,2)) / pow(1-pi0-pi1,2);
@@ -89,8 +88,8 @@ NumericVector GEE_UfuncIns(NumericVector Y1star, NumericVector Y2star, NumericMa
     }
     
     
-    Y1starstartilde(i) =  pow(Y1starstar(i),2) - pow(sigma_e,2)/pow(gamma1,2) - pow(gamma(1),2) / pow(gamma1,2) * Delta;
-    Y1Y2sst(i) = Y1starstar(i) * Y2starstar(i) + gamma(1) / gamma1 * Delta;
+    Y1starstartilde(i) =  pow(Y1starstar(i),2) - pow(sigma_e,2)/pow(gamma1,2) - pow(gamma(2),2) / pow(gamma1,2) * Delta;
+    Y1Y2sst(i) = Y1starstar(i) * Y2starstar(i) + gamma(2) / gamma1 * Delta;
     
     S1 = Y1starstartilde(i) - 2 * eta1(i) * Y1starstar(i) + pow(eta1(i),2);
     S2 = Y1Y2sst(i) - eta1(i)* Y2starstar(i) - eta2expit(i)* Y1starstar(i) + eta1(i) * eta2expit(i); 
@@ -108,10 +107,7 @@ NumericVector GEE_UfuncIns(NumericVector Y1star, NumericVector Y2star, NumericMa
     
     Ufunc(ncov1 + ncov2) += 2 * sigma * (S1-Vii(0,0)) 
                + 2*xi * pow(vi2(i),0.5) * (S2-Vii(0,1));
-    //Ufunc(ncov1 + ncov2) += -2 / pow(sigma,2) / (1-pow(xi,2))  * (S1-Vii(0,0))
-    // + 2 * xi/sigma / pow(vi2(i),0.5) / (1-pow(xi,2)) * (S2-Vii(0,1));
-               
-    //temp(i) = S3-Vii(1,1);
+    
     Ufunc(ncov1 + ncov2 + 1) += 2 * sigma * pow(vi2(i),0.5) * (S2-Vii(0,1));
     //Ufunc(ncov1 + ncov2 + 1) += 2 * xi   * (S1-Vii(0,0)) 
     //             - 2 * (1 + pow(xi,2)) * sigma  / pow(vi2(i),0.5) * (S2-Vii(0,1)) 
@@ -120,7 +116,7 @@ NumericVector GEE_UfuncIns(NumericVector Y1star, NumericVector Y2star, NumericMa
   }
   
   return(Ufunc);
-  //return(Y2starstar);
+  // return(Y1starstar);
 }
 
 

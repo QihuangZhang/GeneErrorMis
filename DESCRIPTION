@@ -1,8 +1,8 @@
 Package: GeneErrorMis
 Type: Package
 Title: Measurement Error and Misclassification in Bivariate Analysis of the Statistical Genetic Studies
-Version: 1.1.7
-Date: 2020-01-21
+Version: 1.2.0
+Date: 2020-07-13
 Author: Qihuang Zhang and Grace Y. Yi
 Maintainer: Qihuang Zhang <qihuang.zhang@uwaterloo.ca>
 Description: Implementation of insertion strategy by Grace Y. Yi (2017, ISBN:978-1-4939-6640-0) for data with mixed measurement error and misclassification in responses. The R package is general to different study types, including known mismeasurement process, available internal validation data and available external validation data.
