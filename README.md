@@ -7,7 +7,7 @@ Installation
 # install devtools if necessary
 install.packages('devtools')
 
-# install the MuSiC package
+# install the GeneErrorMis package
 devtools::install_github('QihuangZhang/GeneErrorMis')
 
 # load
