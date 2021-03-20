@@ -14,7 +14,7 @@ devtools::install_github('QihuangZhang/GeneErrorMis')
 library(GeneErrorMis)
 ```
 
-How to cite `GeneErrorMis`
+Related article of `GeneErrorMis`
 -------------------
 Please cite the following publication:
 
